@@ -12,7 +12,7 @@ import {
   CSidebarNavItem,
 } from '@coreui/react'
 
-import SidebarCalendar from '../views/pages/main/SidebarCalendar'
+import SidebarCalendar from '../views/pages/navCalendar/SidebarCalendar'
 
 
 // sidebar nav config
