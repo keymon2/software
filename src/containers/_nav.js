@@ -49,7 +49,7 @@ const _nav =  [
   {
     _tag: 'CSidebarNavItem',
     name: 'Schedule',
-    to: '/Schedules',
+    to: '/main',
     icon: 'cil-cursor',
   },
 ]

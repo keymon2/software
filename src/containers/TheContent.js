@@ -36,7 +36,7 @@ const TheContent = () => {
                   )} />
               )
             })}
-            <Redirect from="/" to="/user/userprofile" />
+            <Redirect from="/" to="/main" />
           </Switch>
         </Suspense>
       </CContainer>
