@@ -14,7 +14,7 @@ const _nav =  [
       {
         _tag:'CSidebarNavItem',
         name: 'Album',
-        to:'/user/album',
+        to:'/Album',
       },
       {
         _tag:'CSidebarNavItem',
