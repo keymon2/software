@@ -24,7 +24,7 @@ const _nav =  [
       {
         _tag:'CSidebarNavItem',
         name: 'Chat',
-        to:'/user/chat'
+        to:'/dev'
       },
     ],
   },

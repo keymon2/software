@@ -48,7 +48,7 @@ export default class Line extends Component {
                 } else {
                     weektemp.push({
                         date: date - endOfThisMonth,
-                        month: selectMonth
+                        month: selectMonth + 1
                     })
                     date += 1
                 }

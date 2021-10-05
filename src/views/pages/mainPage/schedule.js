@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import styled from 'styled-components'
 import Daytime from './Daytime'
+import Daytimedev from './Daytimedev'
 const Header = styled.div`
     display: grid;
     grid-template-columns: 30px repeat(5,1fr) 12px;
- 
+    left: 10000px;
     align-items: stretch;
 `;
 const HeaderItem = styled.div`
@@ -24,24 +25,9 @@ const Container = styled.div`
     height: 70vh;
 `;
 
-const RedLine = styled.div`
-    position: relative;
-    height: 4px;
-    width: 100%;
-    top:  ${props => props.top}px;
-    color: red;
-    background-color: red;
-    
-`;
 
 const Schedule = () => {
-    const [ X , setX] = useState(0);
-    const [ Y, setY] = useState(0)
-    const followLine = e => {
-        setX(  e.clientX);
-        setY(  e.screenY);
-    }
-
+    
     const week= ['화','수','목','금','토']
     return (
         <div>
@@ -57,9 +43,8 @@ const Schedule = () => {
                     ))}
                     <div></div>
                 </Header>
-                <Body onClick={followLine}>
-                    <RedLine top={Y}/>
-                    <Daytime ></Daytime>
+                <Body >
+                    <Daytimedev ></Daytimedev>
                 </Body>
             </Container>
         </div>
