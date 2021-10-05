@@ -1,5 +1,5 @@
 import React from 'react';
-import Schedule from './views/pages/mainPage/Schedule'
+import Schedule from './views/pages/mainPage/'
 import Daytimedev from './views/pages/mainPage/Daytimedev'
 import Stat from './views/pages/mainPage/Daytimedev'
 const SidebarClendar = React.lazy(() => import('./views/pages/navCalendar/SidebarCalendar') )
@@ -13,4 +13,3 @@ const routes = [
 
 ];
 export default routes;
- 
