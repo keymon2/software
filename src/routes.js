@@ -1,6 +1,8 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import Schedule from './views/pages/mainPage/Schedule'
 import Daytimedev from './views/pages/mainPage/Daytimedev'
+import Album from './views/pages/album/album'
 import Stat from './views/pages/mainPage/Daytimedev'
 const SidebarClendar = React.lazy(() => import('./views/pages/navCalendar/SidebarCalendar') )
 
