@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import styled from "styled-components"
 import Line from './Line'
+import {connect} from 'react-redux'
+import {changeDay} from '../../../store/selectDay'
 const StyledCalendar = styled.body`
     width: 100%;
     height: 240px;
@@ -20,7 +22,7 @@ const StyledUpDown = styled.button`
 `;
 
 
-export default class SidebarCalendar extends Component {
+export class SidebarCalendar extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -30,6 +32,16 @@ export default class SidebarCalendar extends Component {
             monthArray: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
             weekArr: ["일", "월", "화", "수", "목", "금", "토"],
         }
+    }
+    componentDidMount(){
+        const {year,month,date} = this.props
+        console.log("sidebar")
+        console.log(year,month,date)
+        this.setState({
+            year: year,
+            month: month,
+            date: date
+        })
     }
     MonthLength = (month) => {
         let monthTemp = 0
@@ -64,35 +76,43 @@ export default class SidebarCalendar extends Component {
         return daylist
     }
     up = () => {
-        if (this.state.month == 12) {
+
+        if (this.state.month === 12) {
+           
             this.setState({
                 year: this.state.year + 1,
                 month: 1
             })
         } else {
+          
             this.setState({
+                year: this.state.year,
                 month: this.state.month + 1
             })
         }
     }
     down = () => {
-        if (this.state.month == 1) {
+
+        if (this.state.month === 1) {
+
             this.setState({
                 year: this.state.year - 1,
                 month: 12
             })
         } else {
+        
             this.setState({
-                month: this.state.month - 1
+                year: this.state.year ,
+                month: this.state.month -1,
             })
         }
     }
-    changeDate = (date) => {
-        this.setState({ date })
-    }
+
     render() {
         let DayList = this.dayList()
 
+        const {year,month,date} = this.props
+        const {changeDay} = this.props
         return (
             <StyledCalendar>
                 <year>
@@ -116,7 +136,8 @@ export default class SidebarCalendar extends Component {
                             index={index}
                             selectDate={this.state.date}
                             selectMonth={this.state.month}
-                            changeDate={()=> this.changeDate()}
+                            selectYear={this.state.year}
+                            changeday = {changeDay}
                         />
                     ))}
                 </div>
@@ -124,3 +145,14 @@ export default class SidebarCalendar extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => ({
+    year: state.day.year,
+    month: state.day.month,
+    date:state.day.date
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    changeDay: (payload) => dispatch(changeDay(payload))
+})
+export default connect(mapStateToProps,mapDispatchToProps)(SidebarCalendar)

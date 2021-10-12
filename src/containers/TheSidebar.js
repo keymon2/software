@@ -20,8 +20,9 @@ import navigation from './_nav'
 
 const TheSidebar = () => {
   const dispatch = useDispatch()
-  const show = useSelector(state => state.sidebarShow)
-
+  const show = useSelector(state => state.sidebar.sidebarShow)
+  console.log("start show")
+  console.log(show)
   
   const imgA = "https://youimg1.tripcdn.com/target/100h1f000001grvlmE33E_C_750_500.jpg?proc=source%2Ftrip"
   return (

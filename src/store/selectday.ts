@@ -1,7 +1,4 @@
-import { createSlice, createAction } from '@reduxjs/toolkit'
-
-export const changeDay = createAction('day/CHANGE')
-
+import { createSlice } from '@reduxjs/toolkit'
 
 interface SelectDay {
     year: Number,
@@ -19,7 +16,7 @@ const selectDaySlice = createSlice({
     name: 'selectDay',
     initialState,
     reducers: {
-        getChage: (state, action) => {
+        changeDay: (state, action) => {
             state.year= action.payload.year
             state.month = action.payload.month
             state.date = action.payload.date
@@ -27,5 +24,5 @@ const selectDaySlice = createSlice({
     }
 })
 
-export const selectDayActions = { ...selectDaySlice.actions }
+export const {changeDay} = selectDaySlice.actions
 export default selectDaySlice.reducer
