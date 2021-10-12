@@ -25,7 +25,7 @@ export default class Line extends Component {
                 if (date <= endOfLastMonth) {
                     weektemp.push({
                         date: date,
-                        month: selectMonth - 1
+                        month: selectMonth - 1 
                     })
                     date += 1
                 } else {
@@ -61,7 +61,7 @@ export default class Line extends Component {
     }
     render() {
         let weekDayNum = this.weekDayNum()
-        const { selectDate, changeDate, selectMonth } = this.props
+        const { selectDate, selectMonth,changeday} = this.props
 
         return (
             <StyledLine>
@@ -69,8 +69,9 @@ export default class Line extends Component {
                     <Cell
                         date={date}
                         selectDate={selectDate}
-                        changeDate={changeDate}
+
                         selectMonth={selectMonth}
+                        changday ={changeday}
                     />
                 ))}
             </StyledLine>

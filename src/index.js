@@ -11,7 +11,7 @@ import reportWebVitals from './reportWebVitals'
 
 import { icons } from './assets/icons'
 import { Provider } from 'react-redux'
-import store from './store'
+import store from './store/store'
 
 React.icons = icons
 
