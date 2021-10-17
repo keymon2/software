@@ -5,7 +5,8 @@ import Daytimedev from './views/pages/mainPage/Daytimedev'
 import Album from './views/pages/album/album'
 import Chat from './views/pages/chatting/chat'
 import Stat from './views/pages/mainPage/Daytimedev'
-const SidebarClendar = React.lazy(() => import('./views/pages/navCalendar/SidebarCalendar') )
+const SidebarClendar = React.lazy(() => 
+  import('./views/pages/navCalendar/SidebarCalendar') )
 
 
 const routes = [
