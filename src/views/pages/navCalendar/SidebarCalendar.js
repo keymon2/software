@@ -72,7 +72,6 @@ export class SidebarCalendar extends Component {
         for (let i = 8 - dayOfWeek; i <= monthLength; i += 7) {
             daylist.push(i)
         }
-
         return daylist
     }
     up = () => {
