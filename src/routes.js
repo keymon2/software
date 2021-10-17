@@ -1,3 +1,6 @@
+
+   
+/* eslint-disable no-unused-vars */
 import React from "react";
 import Schedule from "./views/pages/mainPage/Schedule";
 import Daytimedev from "./views/pages/mainPage/Daytimedev";
@@ -15,6 +18,5 @@ const routes = [
   { path: "/main", exact: true, name: "Main", component: Schedule },
   { path: "/dev", exact: true, name: "DEV", component: Daytimedev },
   { path: "/dev", exact: true, name: "DEV", component: Daytimedev },
-  
 ];
 export default routes;
