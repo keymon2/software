@@ -1,5 +1,3 @@
-
-   
 /* eslint-disable no-unused-vars */
 import React from "react";
 import Schedule from "./views/pages/mainPage/Schedule";
