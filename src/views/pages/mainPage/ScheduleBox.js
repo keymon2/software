@@ -7,6 +7,7 @@ const Schedule = styled.div`
   z-index: 2;
   position: absolute;
   width: 130px;
+  border-radius: 5%;
   background-color: red;
   height: ${(props) => props.height || 0}px;
   /*background-color: ${(props) => props.color}; */

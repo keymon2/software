@@ -4,8 +4,8 @@ import styled from "styled-components";
 const StatBox = styled.div`
   display: inline-block;
   position: absolute;
-  left: 900px;
-  top: ${(props) => props.top + 90 || 90}px;
+  left: 950px;
+  top: ${(props) => props.top + 98 || 98}px;
   border: 1px solid black;
   width: 300px;
   height: 700px;

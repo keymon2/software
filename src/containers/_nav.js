@@ -18,8 +18,8 @@ const _nav =  [
       },
       {
         _tag:'CSidebarNavItem',
-        name: 'PostsX',
-        to:'/user/postsX'
+        name: 'Chatting',
+        to:'/Chat'
       },
       {
         _tag:'CSidebarNavItem',
