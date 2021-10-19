@@ -8,14 +8,14 @@ const Schedule = styled.div`
   position: absolute;
   width: 130px;
   border-radius: 5%;
-  background-color: red;
+  background-color: ${(props) => props.color || "#ffffff"};
   height: ${(props) => props.height || 0}px;
   /*background-color: ${(props) => props.color}; */
   background-color: "red";
   left: ${(props) => props.left - 80 || 0}px;
   top: ${(props) => props.top + 72 || 0}px;
 `;
-const ScheduleBox = ({ List, today }) => {
+const ScheduleBox = ({ List, today, select }) => {
   let propsList = [];
   List.map((day, index) => {
     day.schedule.map((todo, index) => {
@@ -26,16 +26,24 @@ const ScheduleBox = ({ List, today }) => {
       Stodo.left = (day.day.date - today.date + 3) * 130;
       Stodo.top =
         parseInt(todo.during.start.h) * 72 + todo.during.start.m * 1.2;
+      Stodo.color = todo.tag.color;
+      Stodo.self = todo;
       propsList.push(Stodo);
     });
   });
   console.log(propsList);
+
   return (
     <div style={{ zIndex: 2, position: "absolute" }}>
       {propsList.map((day, index) => (
-        <Schedule height={day.height} left={day.left} top={day.top}></Schedule>
+        <Schedule
+          height={day.height}
+          left={day.left}
+          top={day.top}
+          color={day.color}
+          onClick={() => select(day.self)}
+        ></Schedule>
       ))}
-      asdasdasdasd
     </div>
   );
 };

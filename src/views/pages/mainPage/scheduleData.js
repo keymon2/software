@@ -8,8 +8,8 @@ export const Data = [
     schedule: [
       {
         tag: {
-          color: "red",
-          title: "공부",
+          color: "blue",
+          title: "일",
         },
         during: {
           start: {
@@ -21,7 +21,7 @@ export const Data = [
             m: 0,
           },
         },
-        todo: "~~ 뭐뭐뭐 공부 하기",
+        todo: ["~~ 뭐뭐뭐 공부 하기"],
       },
       {
         tag: {
@@ -38,12 +38,12 @@ export const Data = [
             m: 5,
           },
         },
-        todo: "~~ 뭐뭐뭐 공부 하기",
+        todo: ["~~ 뭐뭐뭐 공부 하기"],
       },
       {
         tag: {
-          color: "red",
-          title: "공부",
+          color: "blue",
+          title: "일",
         },
         during: {
           start: {
@@ -55,7 +55,7 @@ export const Data = [
             m: 5,
           },
         },
-        todo: "~~ 뭐뭐뭐 공부 하기",
+        todo: ["~~ 뭐뭐뭐 공부 하기"],
       },
     ],
   },
@@ -81,12 +81,12 @@ export const Data = [
             m: 0,
           },
         },
-        todo: "~~ 뭐뭐뭐 공부 하기",
+        todo: ["~~ 뭐뭐뭐 공부 하기"],
       },
       {
         tag: {
-          color: "red",
-          title: "공부",
+          color: "blue",
+          title: "일",
         },
         during: {
           start: {
@@ -98,7 +98,7 @@ export const Data = [
             m: 5,
           },
         },
-        todo: "~~ 뭐뭐뭐 공부 하기",
+        todo: ["~~ 뭐뭐뭐 공부 하기"],
       },
       {
         tag: {
@@ -115,7 +115,7 @@ export const Data = [
             m: 10,
           },
         },
-        todo: "~~ 뭐뭐뭐 공부 하기",
+        todo: ["~~ 뭐뭐뭐 공부 하기"],
       },
     ],
   },
@@ -141,12 +141,12 @@ export const Data = [
             m: 0,
           },
         },
-        todo: "~~ 뭐뭐뭐 공부 하기",
+        todo: ["~~ 뭐뭐뭐 공부 하기"],
       },
       {
         tag: {
-          color: "red",
-          title: "공부",
+          color: "blue",
+          title: "일",
         },
         during: {
           start: {
@@ -158,12 +158,12 @@ export const Data = [
             m: 20,
           },
         },
-        todoo: "~~ 뭐뭐뭐 공부 하기",
+        todoo: ["~~ 뭐뭐뭐 공부 하기"],
       },
       {
         tag: {
-          color: "red",
-          title: "공부",
+          color: "yellow",
+          title: "놀기",
         },
         during: {
           start: {
@@ -175,7 +175,7 @@ export const Data = [
             m: 20,
           },
         },
-        todo: "~~ 뭐뭐뭐 공부 하기",
+        todo: ["~~ 뭐뭐뭐 공부 하기"],
       },
     ],
   },
@@ -188,8 +188,8 @@ export const Data = [
     schedule: [
       {
         tag: {
-          color: "red",
-          title: "공부",
+          color: "yellow",
+          title: "놀기",
         },
         during: {
           start: {
@@ -218,7 +218,7 @@ export const Data = [
             m: 15,
           },
         },
-        todo: "~~ 뭐뭐뭐 공부 하기",
+        todo: ["~~ 뭐뭐뭐 공부 하기"],
       },
       {
         tag: {
@@ -235,7 +235,7 @@ export const Data = [
             m: 10,
           },
         },
-        todo: "~~ 뭐뭐뭐 공부 하기",
+        todo: ["~~ 뭐뭐뭐 공부 하기"],
       },
     ],
   },
@@ -248,8 +248,8 @@ export const Data = [
     schedule: [
       {
         tag: {
-          color: "red",
-          title: "공부",
+          color: "yellow",
+          title: "놀기",
         },
         during: {
           start: {
@@ -261,7 +261,7 @@ export const Data = [
             m: 5,
           },
         },
-        todo: "~~ 뭐뭐뭐 공부 하기",
+        todo: ["~~ 뭐뭐뭐 공부 하기"],
       },
       {
         tag: {
@@ -278,7 +278,7 @@ export const Data = [
             m: 10,
           },
         },
-        todo: "~~ 뭐뭐뭐 공부 하기",
+        todo: ["~~ 뭐뭐뭐 공부 하기"],
       },
       {
         tag: {
@@ -295,7 +295,7 @@ export const Data = [
             m: 5,
           },
         },
-        todo: "~~ 뭐뭐뭐 공부 하기",
+        todo: ["~~ 뭐뭐뭐 공부 하기"],
       },
     ],
   },

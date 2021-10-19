@@ -22,8 +22,9 @@ const Time = styled.th`
 const Line = styled.tr``;
 const RedLine = styled.div`
   position: relative;
-  height: 4px;
-  width: 30%;
+  height: 2px;
+  width: 690px;
+  left: 1%;
   top: ${(props) => props.top}px;
   color: red;
   background-color: red;
@@ -59,6 +60,7 @@ function Daytimedev(props) {
   const [X, setX] = useState(0);
   const [Y, setY] = useState(74);
   const { year, month, date } = useSelector((state) => state.day);
+  const [Now, setNow] = useState({});
   const daylist = useCallback(() => {
     let dayListFive = [];
     for (let i = -2; i < 3; i++) {
@@ -110,11 +112,16 @@ function Daytimedev(props) {
     else setY(e.pageY - 91);
     setX(e.pageX);
   }, []);
-
+  let today = new Date();
+  let hours = today.getHours();
+  let min = today.getMinutes();
   const dayListFive = daylist();
   return (
     <div style={{ zIndex: 1 }}>
       <RedLine top={Y}></RedLine>
+      <RedLine top={hours * 72 + min * 12}>
+        {hours}:{min}
+      </RedLine>
       <ScheduleBox
         List={Data}
         today={{
@@ -122,8 +129,9 @@ function Daytimedev(props) {
           month: month,
           date: date,
         }}
+        select={setNow}
       />
-      <Schedule onMouseMove={followLine}>
+      <Schedule onClick={followLine}>
         <Line>
           <Time></Time>
           {dayListFive.map((day, index) => (
@@ -136,8 +144,8 @@ function Daytimedev(props) {
         {Hours.map((hours, index) => (
           <Line>
             <Time>{hours} Am</Time>
-            <Cell>{Y}</Cell>
-            <Cell>{X}</Cell>
+            <Cell></Cell>
+            <Cell></Cell>
             <Cell></Cell>
             <Cell></Cell>
             <Cell></Cell>
@@ -154,7 +162,7 @@ function Daytimedev(props) {
           </Line>
         ))}
       </Schedule>
-      <Stat />
+      <Stat List={Data} now={Now} />
     </div>
   );
 }
