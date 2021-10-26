@@ -1,9 +1,10 @@
 import React, { useState, useCallback } from "react";
 import styled from "styled-components";
-import Stat from "./Stat";
+import Stat from "./Stat/Stat";
 import { useSelector } from "react-redux";
-import ScheduleBox from "./ScheduleBox";
+import ScheduleBox from "./Schedule/ScheduleBox";
 import { Data } from "./scheduleData";
+import NewSchedule from "./Schedule/NewSchedule";
 
 const Schedule = styled.table`
   display: inline-block;
@@ -41,8 +42,9 @@ const MonthLength = (month) => {
 };
 
 function Daytimedev(props) {
-  const Hours = [
-    "0",
+  const Hours = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"];
+  const PHours = [
+    "12",
     "1",
     "2",
     "3",
@@ -54,13 +56,18 @@ function Daytimedev(props) {
     "9",
     "10",
     "11",
-    "12",
   ];
   const Weak = ["일", "월", "화", "수", "목", "금", "토"];
-  const [X, setX] = useState(0);
+  const [X, setX] = useState(271);
   const [Y, setY] = useState(74);
+  const [start, setStart] = useState(false);
   const { year, month, date } = useSelector((state) => state.day);
-  const [Now, setNow] = useState({});
+  const [TagState, setTag] = useState([]);
+  const [addY, setAddY] = useState(0);
+  const [addX, setAddX] = useState(0);
+  const [endY, setEndY] = useState(0);
+  const [schedule, setSchedule] = useState(false);
+  const [ThisDay, setThisDay] = useState(0);
   const daylist = useCallback(() => {
     let dayListFive = [];
     for (let i = -2; i < 3; i++) {
@@ -107,21 +114,62 @@ function Daytimedev(props) {
     }
     return dayListFive;
   }, [year, month, date]);
+
   const followLine = useCallback((e) => {
     if (e.pageY - 91 <= 74) setY(74);
     else setY(e.pageY - 91);
     setX(e.pageX);
   }, []);
+  const clickStart = useCallback((e) => {
+    if (e.pageY <= 172) return;
+    if (e.pageX <= 270 || e.pageX >= 920) return;
+    setStart(true);
+    setAddY(e.pageY);
+    setEndY(e.pageY);
+    setAddX(e.pageX);
+  }, []);
+  const clicking = useCallback(
+    (e) => {
+      if (start === false) return;
+      if (e.pageY <= 172) {
+        setEndY(172);
+      }
+      if (e.pageY >= 1899) {
+        setEndY(1899);
+      }
+      setEndY(e.pageY);
+    },
+    [start]
+  );
+  const clickEnd = useCallback((e) => {
+    setStart(false);
+  });
   let today = new Date();
   let hours = today.getHours();
   let min = today.getMinutes();
   const dayListFive = daylist();
+  console.log(start);
+  console.log(addY);
+  console.log(endY);
+  console.log(addX);
+  console.log(schedule);
   return (
-    <div style={{ zIndex: 1 }}>
-      <RedLine top={Y}></RedLine>
-      <RedLine top={hours * 72 + min * 12}>
+    <div
+      style={{ zIndex: 1 }}
+      onMouseDown={clickStart}
+      onMouseMove={clicking}
+      onMouseUp={clickEnd}
+    >
+      <RedLine top={hours * 72 + min * 1.2 + 72}>
         {hours}:{min}
       </RedLine>
+      <NewSchedule
+        start={addY}
+        end={endY}
+        y={addX}
+        setSchedule={(e) => setSchedule(e)}
+        setThisDay={(e) => setThisDay(e)}
+      />
       <ScheduleBox
         List={Data}
         today={{
@@ -129,9 +177,8 @@ function Daytimedev(props) {
           month: month,
           date: date,
         }}
-        select={setNow}
       />
-      <Schedule onClick={followLine}>
+      <Schedule onClick={followLine} setSchedule={setSchedule}>
         <Line>
           <Time></Time>
           {dayListFive.map((day, index) => (
@@ -151,7 +198,7 @@ function Daytimedev(props) {
             <Cell></Cell>
           </Line>
         ))}
-        {Hours.map((hours, index) => (
+        {PHours.map((hours, index) => (
           <Line>
             <Time>{hours} pm</Time>
             <Cell></Cell>
@@ -162,7 +209,14 @@ function Daytimedev(props) {
           </Line>
         ))}
       </Schedule>
-      <Stat List={Data} now={Now} />
+      <Stat
+        List={Data}
+        setTag={setTag}
+        Y={Y}
+        X={X}
+        schedule={schedule}
+        ThisDay={ThisDay}
+      />
     </div>
   );
 }

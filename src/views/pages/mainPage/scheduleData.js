@@ -1,9 +1,9 @@
 export const Data = [
   {
     day: {
-      year: "2021",
-      month: "10",
-      date: "10",
+      year: 2021,
+      month: 10,
+      date: 10,
     },
     schedule: [
       {
@@ -21,7 +21,10 @@ export const Data = [
             m: 0,
           },
         },
+        title: "이벤트",
         todo: ["~~ 뭐뭐뭐 공부 하기"],
+        postion: "서울 용산구",
+        memo: "",
       },
       {
         tag: {
@@ -38,7 +41,10 @@ export const Data = [
             m: 5,
           },
         },
+        title: "이벤트",
         todo: ["~~ 뭐뭐뭐 공부 하기"],
+        postion: "서울 용산구",
+        memo: "",
       },
       {
         tag: {
@@ -55,15 +61,18 @@ export const Data = [
             m: 5,
           },
         },
+        title: "이벤트",
         todo: ["~~ 뭐뭐뭐 공부 하기"],
+        postion: "서울 용산구",
+        memo: "",
       },
     ],
   },
   {
     day: {
-      year: "2021",
-      month: "10",
-      date: "11",
+      year: 2021,
+      month: 10,
+      date: 11,
     },
     schedule: [
       {
@@ -81,7 +90,10 @@ export const Data = [
             m: 0,
           },
         },
+        title: "이벤트",
         todo: ["~~ 뭐뭐뭐 공부 하기"],
+        postion: "서울 용산구",
+        memo: "",
       },
       {
         tag: {
@@ -98,7 +110,10 @@ export const Data = [
             m: 5,
           },
         },
+        title: "이벤트",
         todo: ["~~ 뭐뭐뭐 공부 하기"],
+        postion: "서울 용산구",
+        memo: "",
       },
       {
         tag: {
@@ -115,15 +130,18 @@ export const Data = [
             m: 10,
           },
         },
+        title: "이벤트",
         todo: ["~~ 뭐뭐뭐 공부 하기"],
+        postion: "서울 용산구",
+        memo: "",
       },
     ],
   },
   {
     day: {
-      year: "2021",
-      month: "10",
-      date: "12",
+      year: 2021,
+      month: 10,
+      date: 12,
     },
     schedule: [
       {
@@ -141,7 +159,10 @@ export const Data = [
             m: 0,
           },
         },
+        title: "이벤트",
         todo: ["~~ 뭐뭐뭐 공부 하기"],
+        postion: "서울 용산구",
+        memo: "",
       },
       {
         tag: {
@@ -158,7 +179,10 @@ export const Data = [
             m: 20,
           },
         },
+        title: "이벤트",
         todoo: ["~~ 뭐뭐뭐 공부 하기"],
+        postion: "서울 용산구",
+        memo: "",
       },
       {
         tag: {
@@ -175,15 +199,18 @@ export const Data = [
             m: 20,
           },
         },
+        title: "이벤트",
         todo: ["~~ 뭐뭐뭐 공부 하기"],
+        postion: "서울 용산구",
+        memo: "",
       },
     ],
   },
   {
     day: {
-      year: "2021",
-      month: "10",
-      date: "13",
+      year: 2021,
+      month: 10,
+      date: 13,
     },
     schedule: [
       {
@@ -218,7 +245,10 @@ export const Data = [
             m: 15,
           },
         },
+        title: "이벤트",
         todo: ["~~ 뭐뭐뭐 공부 하기"],
+        postion: "서울 용산구",
+        Album: "",
       },
       {
         tag: {
@@ -235,15 +265,18 @@ export const Data = [
             m: 10,
           },
         },
+        title: "이벤트",
         todo: ["~~ 뭐뭐뭐 공부 하기"],
+        postion: "서울 용산구",
+        Album: "",
       },
     ],
   },
   {
     day: {
-      year: "2021",
-      month: "10",
-      date: "14",
+      year: 2021,
+      month: 10,
+      date: 14,
     },
     schedule: [
       {
@@ -261,7 +294,10 @@ export const Data = [
             m: 5,
           },
         },
+        title: "이벤트",
         todo: ["~~ 뭐뭐뭐 공부 하기"],
+        postion: "서울 용산구",
+        Album: "",
       },
       {
         tag: {
@@ -278,7 +314,10 @@ export const Data = [
             m: 10,
           },
         },
+        title: "이벤트",
         todo: ["~~ 뭐뭐뭐 공부 하기"],
+        postion: "서울 용산구",
+        Album: "",
       },
       {
         tag: {
@@ -295,7 +334,10 @@ export const Data = [
             m: 5,
           },
         },
+        title: "이벤트",
         todo: ["~~ 뭐뭐뭐 공부 하기"],
+        postion: "서울 용산구",
+        Album: "",
       },
     ],
   },
