@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import styled from "styled-components";
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -15,8 +18,20 @@ const Button = styled.button`
   font-size: 10px;
   text-align: top;
 `;
+const EditorContainer = styled.div`
+  height: 200px;
+`;
 const Day = ({ schedule, ThisDay }) => {
   const [width, setWidth] = useState(2);
+  const [memo, setMemo] = useState("");
+  const [title, setTitle] = useState("");
+
+  const titleChange = (e) => {
+    setTitle(e.target.value);
+  };
+  const memoChange = (e) => {
+    setMemo(e.target.value);
+  };
   const { year, month, date } = useSelector((state) => state.day);
   if (schedule === false) {
     return <div> 해당 스케줄 없음</div>;
@@ -28,7 +43,7 @@ const Day = ({ schedule, ThisDay }) => {
             type="text"
             width={width}
             placeholder={schedule.title}
-            onChange={(e) => setWidth(e.target.value.length)}
+            onChange={titleChange}
           ></AutoInput>
         </span>
 
@@ -43,7 +58,11 @@ const Day = ({ schedule, ThisDay }) => {
         </div>
         <br></br>
         <div>메모</div>
-        <input style={{ height: 200 }}></input>
+        <EditorContainer>
+          <textarea style={{ height: "200px" }} onChnage={memoChange}>
+            {memo}
+          </textarea>
+        </EditorContainer>
         <div style={{ alignItems: "left" }}>
           <Button>저장</Button>
           <Button>삭제</Button>

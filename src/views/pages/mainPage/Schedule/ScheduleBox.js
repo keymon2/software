@@ -31,7 +31,7 @@ const ScheduleBox = ({ List, today, select }) => {
       propsList.push(Stodo);
     });
   });
-
+  console.log("aaasdasdasd");
   return (
     <div style={{ zIndex: 2, position: "absolute" }}>
       {propsList.map((day, index) => (
