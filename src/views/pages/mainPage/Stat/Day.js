@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-
+import NewSelect from "./NewSelect";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import styled from "styled-components";
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  width: "100%";
   height: 500px;
 `;
 const AutoInput = styled.input`
@@ -38,15 +39,17 @@ const Day = ({ schedule, ThisDay }) => {
   } else {
     return (
       <Container>
-        <span style={{ width: width }}>
-          <AutoInput
-            type="text"
-            width={width}
-            placeholder={schedule.title}
-            onChange={titleChange}
-          ></AutoInput>
-        </span>
+        <AutoInput
+          type="text"
+          width={width}
+          placeholder={schedule.title}
+          onChange={titleChange}
+        ></AutoInput>
 
+        <div style={{ display: "flex", flexDirection: "row" }}>
+          <input></input>
+        </div>
+        <NewSelect></NewSelect>
         <div>
           <span>
             {month}월{date + ThisDay - 4}일
