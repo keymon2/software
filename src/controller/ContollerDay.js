@@ -1,4 +1,4 @@
-import {get} from '../store/fiveschedule'
+import {get} from '../store/Schedule'
 
 
 export const getFive = (credentials) =>async dispatch => {

@@ -6,41 +6,6 @@ import ScheduleBox from "./Schedule/ScheduleBox";
 import { Data } from "./scheduleData";
 import NewSchedule from "./Schedule/NewSchedule";
 
-const Schedule = styled.table`
-  display: inline-block;
-  width: 900px;
-  z-index: 1;
-`;
-const Cell = styled.th`
-  border: 1px solid black;
-  width: 130px;
-  height: 72px;
-`;
-const Time = styled.th`
-  width: 50px;
-  height: 50px;
-`;
-const Line = styled.tr``;
-const RedLine = styled.div`
-  position: relative;
-  height: 2px;
-  width: 690px;
-  left: 1%;
-  top: ${(props) => props.top}px;
-  color: red;
-  background-color: red;
-`;
-const MonthLength = (month) => {
-  const monthArray = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-  let monthTemp = 0;
-  if (month - 1 < 0) {
-    monthTemp = 11;
-  } else {
-    monthTemp = month - 1;
-  }
-  return monthArray[monthTemp];
-};
-
 function Daytimedev(props) {
   const Hours = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"];
   const PHours = [
@@ -220,5 +185,38 @@ function Daytimedev(props) {
     </div>
   );
 }
-
+const Schedule = styled.table`
+  display: inline-block;
+  width: 900px;
+  z-index: 1;
+`;
+const Cell = styled.th`
+  border: 1px solid black;
+  width: 130px;
+  height: 72px;
+`;
+const Time = styled.th`
+  width: 50px;
+  height: 50px;
+`;
+const Line = styled.tr``;
+const RedLine = styled.div`
+  position: relative;
+  height: 2px;
+  width: 690px;
+  left: 1%;
+  top: ${(props) => props.top}px;
+  color: red;
+  background-color: red;
+`;
+const MonthLength = (month) => {
+  const monthArray = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  let monthTemp = 0;
+  if (month - 1 < 0) {
+    monthTemp = 11;
+  } else {
+    monthTemp = month - 1;
+  }
+  return monthArray[monthTemp];
+};
 export default Daytimedev;

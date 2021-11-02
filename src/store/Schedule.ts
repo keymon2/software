@@ -7,7 +7,7 @@ interface fiveState {
 const initialState: fiveState = { five: "init" };
 
 const selectFiveSlice = createSlice({
-  name: "fiveSchedule",
+  name: "Schedule",
   initialState,
   reducers: {
     get: (state, action) => {
