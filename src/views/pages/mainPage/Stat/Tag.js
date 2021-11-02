@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Line = styled.div`
   display: flex;
   flex-direction: row;
-  background-color: ${(props) => (!props.ho ? "#e5e5e5" : "#DC8B39")};
+  background-color: ${(props) => (!props.ho ? "#e5e5e5" : "#9da5b1")};
 `;
 const CheckBox = styled.img`
   background-color: ${(props) => props.color || "#e5e5e5"};
@@ -20,7 +20,7 @@ const Text = styled.div`
   font-weight: 500;
   font-size: 5;
 `;
-const checkimg = require("./check2.png").default;
+const checkimg = require("./check.svg").default;
 const Tag = ({ data, key, setTag }) => {
   const [hover, setHover] = useState(false);
 

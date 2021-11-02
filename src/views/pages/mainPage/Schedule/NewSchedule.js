@@ -15,7 +15,7 @@ const Schedule = styled.div`
 const NewSchedule = ({ start, end, y, setSchedule, setThisDay }) => {
   const [NewDay, setNewDay] = useState({
     tag: {
-      color: "#ff00ff",
+      color: "#3399ff",
       title: "새로운 TAG",
     },
     during: {

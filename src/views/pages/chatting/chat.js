@@ -36,6 +36,7 @@ const Chat = (props) => {
         }
 
         return(
+          
             <div className='card'>
             <form onSubmit={onMessageSubmit}>
               <h1>Message</h1>
@@ -57,10 +58,13 @@ const Chat = (props) => {
               </div>
               <button>Send Message</button>
             </form>
+            
+            
             <div className="render-chat">
               <h1>Chat log</h1>
               {renderChat()}
             </div>
+            
           </div>
         )   
 

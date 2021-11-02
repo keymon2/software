@@ -8,7 +8,7 @@ export const Data = [
     schedule: [
       {
         tag: {
-          color: "blue",
+          color: "#3399ff",
           title: "일",
         },
         during: {
@@ -28,7 +28,7 @@ export const Data = [
       },
       {
         tag: {
-          color: "red",
+          color: "#e55353",
           title: "공부",
         },
         during: {
@@ -48,7 +48,7 @@ export const Data = [
       },
       {
         tag: {
-          color: "blue",
+          color: "#3399ff",
           title: "일",
         },
         during: {
@@ -77,7 +77,7 @@ export const Data = [
     schedule: [
       {
         tag: {
-          color: "red",
+          color: "#e55353",
           title: "공부",
         },
         during: {
@@ -97,7 +97,7 @@ export const Data = [
       },
       {
         tag: {
-          color: "blue",
+          color: "#3399ff",
           title: "일",
         },
         during: {
@@ -117,7 +117,7 @@ export const Data = [
       },
       {
         tag: {
-          color: "red",
+          color: "#e55353",
           title: "공부",
         },
         during: {
@@ -146,7 +146,7 @@ export const Data = [
     schedule: [
       {
         tag: {
-          color: "red",
+          color: "#e55353",
           title: "공부",
         },
         during: {
@@ -166,7 +166,7 @@ export const Data = [
       },
       {
         tag: {
-          color: "blue",
+          color: "#3399ff",
           title: "일",
         },
         during: {
@@ -186,7 +186,7 @@ export const Data = [
       },
       {
         tag: {
-          color: "yellow",
+          color: "#f9b115",
           title: "놀기",
         },
         during: {
@@ -215,7 +215,7 @@ export const Data = [
     schedule: [
       {
         tag: {
-          color: "yellow",
+          color: "#f9b115",
           title: "놀기",
         },
         during: {
@@ -232,7 +232,7 @@ export const Data = [
       },
       {
         tag: {
-          color: "red",
+          color: "#e55353",
           title: "공부",
         },
         during: {
@@ -252,7 +252,7 @@ export const Data = [
       },
       {
         tag: {
-          color: "red",
+          color: "#e55353",
           title: "공부",
         },
         during: {
@@ -281,7 +281,7 @@ export const Data = [
     schedule: [
       {
         tag: {
-          color: "yellow",
+          color: "#f9b115",
           title: "놀기",
         },
         during: {
@@ -301,7 +301,7 @@ export const Data = [
       },
       {
         tag: {
-          color: "red",
+          color: "#e55353",
           title: "공부",
         },
         during: {
@@ -321,7 +321,7 @@ export const Data = [
       },
       {
         tag: {
-          color: "red",
+          color: "#e55353",
           title: "공부",
         },
         during: {

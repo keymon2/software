@@ -21,6 +21,8 @@ const Button = styled.button`
 const EditorContainer = styled.div`
   height: 200px;
 `;
+
+
 const Day = ({ schedule, ThisDay }) => {
   const [width, setWidth] = useState(2);
   const [memo, setMemo] = useState("");
@@ -38,34 +40,39 @@ const Day = ({ schedule, ThisDay }) => {
   } else {
     return (
       <Container>
-        <span style={{ width: width }}>
-          <AutoInput
-            type="text"
-            width={width}
-            placeholder={schedule.title}
-            onChange={titleChange}
-          ></AutoInput>
+        <span>          
+        <AutoInput
+          type="text"
+          width={width}
+          placeholder={schedule.title}
+          onChange={titleChange}
+        ></AutoInput>
         </span>
+        <ul class="list-group">
+          <li class="list-group-item">       
+              {month}/{date + ThisDay - 4}
+          </li>
+          <li class="list-group-item">
+              {schedule.during.start.h}: {schedule.during.start.m} -{" "}
+              {schedule.during.end.h}: {schedule.during.end.m}
+          </li>
+        </ul>
 
+        
+      <br></br>
+      
         <div>
-          <span>
-            {month}월{date + ThisDay - 4}일
-          </span>
-          <span style={{ textAlign: "right", float: "right" }}>
-            {schedule.during.start.h}시 {schedule.during.start.m}분 ~{" "}
-            {schedule.during.end.h}시 {schedule.during.end.m}분
-          </span>
+          <h6>메모</h6>
+          <EditorContainer>
+            <textarea style={{ height: "200px" }} onChnage={memoChange}>
+              {memo}
+            </textarea>
+          </EditorContainer>
         </div>
-        <br></br>
-        <div>메모</div>
-        <EditorContainer>
-          <textarea style={{ height: "200px" }} onChnage={memoChange}>
-            {memo}
-          </textarea>
-        </EditorContainer>
+
         <div style={{ alignItems: "left" }}>
-          <Button>저장</Button>
-          <Button>삭제</Button>
+          <button class="btn btn-primary rounded-pill" type="button">저장</button>
+          <button class="btn btn-secondary rounded-pill" type="button">삭제</button>
         </div>
       </Container>
     );
