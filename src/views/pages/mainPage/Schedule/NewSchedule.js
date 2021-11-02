@@ -12,8 +12,9 @@ const Schedule = styled.div`
   top: ${(props) => props.top || 0}px;
   overflow: hidden;
 `;
-const NewSchedule = ({ start, end, y, setSchedule, setThisDay }) => {
+const NewSchedule = ({ startS, start, end, y, setSchedule }) => {
   const [NewDay, setNewDay] = useState({
+    thisday: 0,
     tag: {
       color: "#3399ff",
       title: "새로운 TAG",
@@ -29,6 +30,7 @@ const NewSchedule = ({ start, end, y, setSchedule, setThisDay }) => {
       },
     },
     title: "새로운 스케줄",
+    memo: "test2",
   });
   const [active, setActive] = useState(false);
   let height = 18;
@@ -55,10 +57,9 @@ const NewSchedule = ({ start, end, y, setSchedule, setThisDay }) => {
     }
   }
   let left = 130 * parseInt(y / 132);
-  setThisDay(parseInt(y / 130));
   useEffect(() => {
     setNewDay((day) => {
-      setActive(true);
+      if (startS) setActive(true);
       let h = parseInt((ctop - 172) / 72);
       let m = parseInt((ctop - h * 72 - 172) / 1.2);
       let endh = parseInt((cend - 172) / 72);
@@ -67,12 +68,13 @@ const NewSchedule = ({ start, end, y, setSchedule, setThisDay }) => {
       day.during.start.m = m;
       day.during.end.h = endh;
       day.during.end.m = endm;
+      day.thisday = parseInt(y / 130);
       return day;
     });
     if (active === true) setSchedule(NewDay);
     else setSchedule(false);
     console.log(NewDay);
-  }, [NewDay, setSchedule, top]);
+  }, [startS]);
 
   return (
     <div style={{ zIndex: 2, position: "absolute" }}>
@@ -81,6 +83,7 @@ const NewSchedule = ({ start, end, y, setSchedule, setThisDay }) => {
         top={top - 100}
         height={height}
         color={NewDay.tag.color}
+        onClick={() => setSchedule(NewDay)}
       >
         {NewDay.title}
         <div>

@@ -19,19 +19,26 @@ const NewSelect = () => {
       option: (provided, state) => ({
         ...provided,
         border: "1px dotted black",
-        color: state.data.color,
-        opacity: 0.8,
+        color: "white",
+        background: state.data.color,
+        opacity: 1,
         padding: 20,
+        width: 100,
       }),
       control: (provided) => ({
         ...provided,
-        width: 200,
+        width: 100,
         background: "#e5e5e5",
       }),
       singleValue: (provided, state) => ({
         ...provided,
         color: state.data.color,
         transition: "opacity 300ms",
+      }),
+      menu: (provided) => ({
+        ...provided,
+        width: 100,
+        height: 50,
       }),
     }),
     []

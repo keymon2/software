@@ -27,12 +27,10 @@ function Daytimedev(props) {
   const [Y, setY] = useState(74);
   const [start, setStart] = useState(false);
   const { year, month, date } = useSelector((state) => state.day);
-  const [TagState, setTag] = useState([]);
   const [addY, setAddY] = useState(0);
   const [addX, setAddX] = useState(0);
   const [endY, setEndY] = useState(0);
   const [schedule, setSchedule] = useState(false);
-  const [ThisDay, setThisDay] = useState(0);
   const daylist = useCallback(() => {
     let dayListFive = [];
     for (let i = -2; i < 3; i++) {
@@ -108,23 +106,14 @@ function Daytimedev(props) {
   );
   const clickEnd = useCallback((e) => {
     setStart(false);
-  });
+  }, []);
   let today = new Date();
   let hours = today.getHours();
   let min = today.getMinutes();
   const dayListFive = daylist();
-  console.log(start);
-  console.log(addY);
-  console.log(endY);
-  console.log(addX);
   console.log(schedule);
   return (
-    <div
-      style={{ zIndex: 1 }}
-      onMouseDown={clickStart}
-      onMouseMove={clicking}
-      onMouseUp={clickEnd}
-    >
+    <div style={{ zIndex: 1 }} onMouseMove={clicking} onMouseUp={clickEnd}>
       <RedLine top={hours * 72 + min * 1.2 + 72}>
         {hours}:{min}
       </RedLine>
@@ -132,10 +121,11 @@ function Daytimedev(props) {
         start={addY}
         end={endY}
         y={addX}
-        setSchedule={(e) => setSchedule(e)}
-        setThisDay={(e) => setThisDay(e)}
+        startS={start}
+        setSchedule={setSchedule}
       />
       <ScheduleBox
+        setSchedule={setSchedule}
         List={Data}
         today={{
           year: year,
@@ -143,7 +133,11 @@ function Daytimedev(props) {
           date: date,
         }}
       />
-      <Schedule onClick={followLine} setSchedule={setSchedule}>
+      <Schedule
+        onClick={followLine}
+        onMouseDown={clickStart}
+        setSchedule={setSchedule}
+      >
         <Line>
           <Time></Time>
           {dayListFive.map((day, index) => (
@@ -174,14 +168,7 @@ function Daytimedev(props) {
           </Line>
         ))}
       </Schedule>
-      <Stat
-        List={Data}
-        setTag={setTag}
-        Y={Y}
-        X={X}
-        schedule={schedule}
-        ThisDay={ThisDay}
-      />
+      <Stat List={Data} Y={Y} X={X} schedule={schedule} />
     </div>
   );
 }

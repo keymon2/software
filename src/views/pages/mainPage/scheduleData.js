@@ -24,7 +24,7 @@ export const Data = [
         title: "이벤트",
         todo: ["~~ 뭐뭐뭐 공부 하기"],
         postion: "서울 용산구",
-        memo: "",
+        memo: "test",
       },
       {
         tag: {
@@ -44,7 +44,7 @@ export const Data = [
         title: "이벤트",
         todo: ["~~ 뭐뭐뭐 공부 하기"],
         postion: "서울 용산구",
-        memo: "",
+        memo: "test",
       },
       {
         tag: {
@@ -64,7 +64,7 @@ export const Data = [
         title: "이벤트",
         todo: ["~~ 뭐뭐뭐 공부 하기"],
         postion: "서울 용산구",
-        memo: "",
+        memo: "test",
       },
     ],
   },
@@ -93,7 +93,7 @@ export const Data = [
         title: "이벤트",
         todo: ["~~ 뭐뭐뭐 공부 하기"],
         postion: "서울 용산구",
-        memo: "",
+        memo: "test",
       },
       {
         tag: {
@@ -113,7 +113,7 @@ export const Data = [
         title: "이벤트",
         todo: ["~~ 뭐뭐뭐 공부 하기"],
         postion: "서울 용산구",
-        memo: "",
+        memo: "test",
       },
       {
         tag: {
@@ -133,7 +133,7 @@ export const Data = [
         title: "이벤트",
         todo: ["~~ 뭐뭐뭐 공부 하기"],
         postion: "서울 용산구",
-        memo: "",
+        memo: "test",
       },
     ],
   },
@@ -162,7 +162,7 @@ export const Data = [
         title: "이벤트",
         todo: ["~~ 뭐뭐뭐 공부 하기"],
         postion: "서울 용산구",
-        memo: "",
+        memo: "test",
       },
       {
         tag: {
@@ -182,7 +182,7 @@ export const Data = [
         title: "이벤트",
         todoo: ["~~ 뭐뭐뭐 공부 하기"],
         postion: "서울 용산구",
-        memo: "",
+        memo: "test",
       },
       {
         tag: {
@@ -202,7 +202,7 @@ export const Data = [
         title: "이벤트",
         todo: ["~~ 뭐뭐뭐 공부 하기"],
         postion: "서울 용산구",
-        memo: "",
+        memo: "test",
       },
     ],
   },

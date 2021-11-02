@@ -14,7 +14,7 @@ const Schedule = styled.div`
   overflow: hidden;
   border: 0.3px solid black;
 `;
-const ScheduleBox = ({ List, today, select }) => {
+const ScheduleBox = ({ List, today, select, setSchedule }) => {
   let propsList = [];
   List.map((day, index) => {
     day.schedule.map((todo, index) => {
@@ -31,7 +31,7 @@ const ScheduleBox = ({ List, today, select }) => {
       propsList.push(Stodo);
     });
   });
-  console.log("aaasdasdasd");
+  const clickHandler = (day) => {};
   return (
     <div style={{ zIndex: 2, position: "absolute" }}>
       {propsList.map((day, index) => (
@@ -40,6 +40,27 @@ const ScheduleBox = ({ List, today, select }) => {
           left={day.left}
           top={day.top}
           color={day.color}
+          onClick={() =>
+            setSchedule({
+              thisday: parseInt(day.left / 130) + 1,
+              tag: {
+                color: day.color,
+                title: day.self.tag.title,
+              },
+              during: {
+                start: {
+                  h: day.self.during.start.h,
+                  m: day.self.during.start.m,
+                },
+                end: {
+                  h: day.self.during.end.h,
+                  m: day.self.during.end.m,
+                },
+              },
+              title: day.self.title,
+              memo: day.self.memo,
+            })
+          }
         >
           {day.self.title}
           <div>

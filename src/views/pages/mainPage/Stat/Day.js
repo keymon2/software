@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import NewSelect from "./NewSelect";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
@@ -23,10 +23,19 @@ const EditorContainer = styled.div`
   height: 200px;
 `;
 
-const Day = ({ schedule, ThisDay }) => {
-  const [width, setWidth] = useState(2);
+const Day = ({ schedule }) => {
   const [memo, setMemo] = useState("");
   const [title, setTitle] = useState("");
+  const [TagColor, setTagColor] = useState("white");
+  const [TagTitle, setTagTitle] = useState("없음");
+  useEffect(() => {
+    if (schedule !== false) {
+      setTagColor(schedule.tag.color);
+      setTagTitle(schedule.tag.title);
+      setTitle(schedule.title);
+      setMemo(schedule.memo);
+    }
+  }, []);
 
   const titleChange = (e) => {
     setTitle(e.target.value);
@@ -43,14 +52,14 @@ const Day = ({ schedule, ThisDay }) => {
         <span>
           <AutoInput
             type="text"
-            width={width}
             placeholder={schedule.title}
             onChange={titleChange}
           ></AutoInput>
         </span>
+        <NewSelect></NewSelect>
         <ul class="list-group">
           <li class="list-group-item">
-            {month}/{date + ThisDay - 4}
+            {month}/{date + schedule.thisday - 4}
           </li>
           <li class="list-group-item">
             {schedule.during.start.h}: {schedule.during.start.m} -{" "}
@@ -63,9 +72,11 @@ const Day = ({ schedule, ThisDay }) => {
         <div>
           <h6>메모</h6>
           <EditorContainer>
-            <textarea style={{ height: "200px" }} onChnage={memoChange}>
-              {memo}
-            </textarea>
+            <textarea
+              value={memo}
+              style={{ height: "200px" }}
+              onChnage={memoChange}
+            />
           </EditorContainer>
         </div>
 
