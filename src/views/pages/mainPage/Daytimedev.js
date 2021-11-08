@@ -1,12 +1,13 @@
 import React, { useState, useCallback } from "react";
 import styled from "styled-components";
 import Stat from "./Stat/Stat";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import ScheduleBox from "./Schedule/ScheduleBox";
 import { Data } from "./scheduleData";
 import NewSchedule from "./Schedule/NewSchedule";
 
 function Daytimedev(props) {
+  const dispatch = useDispatch();
   const Hours = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"];
   const PHours = [
     "12",
@@ -123,6 +124,11 @@ function Daytimedev(props) {
         y={addX}
         startS={start}
         setSchedule={setSchedule}
+        today={{
+          year: year,
+          month: month,
+          date: date,
+        }}
       />
       <ScheduleBox
         setSchedule={setSchedule}

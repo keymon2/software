@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-
+import { useSelector, useDispatch } from "react-redux";
+import { select } from "../../../../store/selectSchedule";
 const Schedule = styled.div`
   z-index: 2;
   position: absolute;
@@ -12,7 +13,7 @@ const Schedule = styled.div`
   top: ${(props) => props.top || 0}px;
   overflow: hidden;
 `;
-const NewSchedule = ({ startS, start, end, y, setSchedule }) => {
+const NewSchedule = ({ startS, start, end, y, setSchedule, today }) => {
   const [NewDay, setNewDay] = useState({
     thisday: 0,
     tag: {
@@ -33,6 +34,7 @@ const NewSchedule = ({ startS, start, end, y, setSchedule }) => {
     memo: "test2",
   });
   const [active, setActive] = useState(false);
+  const dispatch = useDispatch();
   let height = 18;
   let top = 0;
   let ctop = 0;
@@ -71,8 +73,26 @@ const NewSchedule = ({ startS, start, end, y, setSchedule }) => {
       day.thisday = parseInt(y / 130);
       return day;
     });
-    if (active === true) setSchedule(NewDay);
-    else setSchedule(false);
+    if (active === true && startS === false) {
+      setSchedule(NewDay);
+      dispatch(
+        select({
+          select: true,
+          tag: {
+            title: "기본",
+            color: "#3499ff",
+          },
+          day: {
+            year: today.year,
+            month: today.month,
+            date: today.date + NewDay.thisday,
+          },
+          during: NewDay.during,
+          title: "새로운 이벤트",
+          memo: "",
+        })
+      );
+    } else setSchedule(false);
     console.log(NewDay);
   }, [startS]);
 
