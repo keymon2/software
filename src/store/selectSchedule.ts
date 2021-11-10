@@ -56,10 +56,12 @@ const selectScheduleSlice = createSlice({
   initialState,
   reducers: {
     select: (state, action) => {
+      state.select = action.payload.select;
       state.day = action.payload.day;
       state.during = action.payload.during;
       state.title = action.payload.title;
       state.memo = action.payload.memo;
+      state.tag = action.payload.tag;
     },
   },
 });

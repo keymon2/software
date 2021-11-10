@@ -1,13 +1,22 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import styled from "styled-components";
 import Stat from "./Stat/Stat";
 import { useSelector, useDispatch } from "react-redux";
 import ScheduleBox from "./Schedule/ScheduleBox";
 import { Data } from "./scheduleData";
 import NewSchedule from "./Schedule/NewSchedule";
-
+import { select } from "../../../store/selectSchedule";
+import { getAll } from "../../../controller/ContollerDay";
 function Daytimedev(props) {
   const dispatch = useDispatch();
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    async function asd() {
+      const data = await getAll();
+      setData(data.data);
+    }
+    asd();
+  }, []);
   const Hours = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"];
   const PHours = [
     "12",
@@ -31,7 +40,6 @@ function Daytimedev(props) {
   const [addY, setAddY] = useState(0);
   const [addX, setAddX] = useState(0);
   const [endY, setEndY] = useState(0);
-  const [schedule, setSchedule] = useState(false);
   const daylist = useCallback(() => {
     let dayListFive = [];
     for (let i = -2; i < 3; i++) {
@@ -112,7 +120,6 @@ function Daytimedev(props) {
   let hours = today.getHours();
   let min = today.getMinutes();
   const dayListFive = daylist();
-  console.log(schedule);
   return (
     <div style={{ zIndex: 1 }} onMouseMove={clicking} onMouseUp={clickEnd}>
       <RedLine top={hours * 72 + min * 1.2 + 72}>
@@ -123,7 +130,6 @@ function Daytimedev(props) {
         end={endY}
         y={addX}
         startS={start}
-        setSchedule={setSchedule}
         today={{
           year: year,
           month: month,
@@ -131,19 +137,15 @@ function Daytimedev(props) {
         }}
       />
       <ScheduleBox
-        setSchedule={setSchedule}
         List={Data}
+        data={data}
         today={{
           year: year,
           month: month,
           date: date,
         }}
       />
-      <Schedule
-        onClick={followLine}
-        onMouseDown={clickStart}
-        setSchedule={setSchedule}
-      >
+      <Schedule onClick={followLine} onMouseDown={clickStart}>
         <Line>
           <Time></Time>
           {dayListFive.map((day, index) => (
@@ -174,7 +176,7 @@ function Daytimedev(props) {
           </Line>
         ))}
       </Schedule>
-      <Stat List={Data} Y={Y} X={X} schedule={schedule} />
+      <Stat List={Data} Y={Y} X={X} />
     </div>
   );
 }

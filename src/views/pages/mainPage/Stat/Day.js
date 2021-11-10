@@ -25,45 +25,30 @@ const EditorContainer = styled.div`
 
 const Day = ({ schedule }) => {
   const [memo, setMemo] = useState("");
-  const [title, setTitle] = useState("");
-  const [TagColor, setTagColor] = useState("white");
-  const [TagTitle, setTagTitle] = useState("없음");
-  useEffect(() => {
-    if (schedule !== false) {
-      setTagColor(schedule.tag.color);
-      setTagTitle(schedule.tag.title);
-      setTitle(schedule.title);
-      setMemo(schedule.memo);
-    }
-  }, []);
-
-  const titleChange = (e) => {
-    setTitle(e.target.value);
-  };
+  const NewSchedule = useSelector((state) => state.schedule);
   const memoChange = (e) => {
     setMemo(e.target.value);
   };
+  useEffect(() => {
+    setMemo(NewSchedule.memo);
+  }, [NewSchedule]);
   const { year, month, date } = useSelector((state) => state.day);
-  if (schedule === false) {
+  if (NewSchedule.select === false) {
     return <div> 해당 스케줄 없음</div>;
   } else {
     return (
       <Container>
         <span>
-          <AutoInput
-            type="text"
-            placeholder={schedule.title}
-            onChange={titleChange}
-          ></AutoInput>
+          <AutoInput type="text" placeholder={NewSchedule.title}></AutoInput>
         </span>
         <NewSelect></NewSelect>
         <ul class="list-group">
           <li class="list-group-item">
-            {month}/{date + schedule.thisday - 4}
+            {NewSchedule.day.month}/{NewSchedule.day.date}
           </li>
           <li class="list-group-item">
-            {schedule.during.start.h}: {schedule.during.start.m} -{" "}
-            {schedule.during.end.h}: {schedule.during.end.m}
+            {NewSchedule.during.start.h}: {NewSchedule.during.start.m} -{" "}
+            {NewSchedule.during.end.h}: {NewSchedule.during.end.m}
           </li>
         </ul>
 

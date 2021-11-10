@@ -7,18 +7,25 @@ const Schedule = styled.div`
   position: absolute;
   width: 130px;
   border-radius: 5%;
-  background-color: ${(props) => props.color || "#000000"};
+  background-color: ${(props) => props.color || "#3499ff"};
   height: ${(props) => props.height || 0}px;
   left: ${(props) => props.left || 0}px;
   top: ${(props) => props.top || 0}px;
   overflow: hidden;
+  border: 1px solid;
 `;
-const NewSchedule = ({ startS, start, end, y, setSchedule, today }) => {
-  const [NewDay, setNewDay] = useState({
-    thisday: 0,
+const NewSchedule = ({ startS, start, end, y, today }) => {
+  const NewDay = useSelector((state) => state.schedule);
+  const [schedule, setSchedule] = useState({
+    select: false,
     tag: {
-      color: "#3399ff",
-      title: "새로운 TAG",
+      title: "기본",
+      color: "#3499ff",
+    },
+    day: {
+      year: 0,
+      month: 0,
+      date: 0,
     },
     during: {
       start: {
@@ -30,8 +37,8 @@ const NewSchedule = ({ startS, start, end, y, setSchedule, today }) => {
         m: 0,
       },
     },
-    title: "새로운 스케줄",
-    memo: "test2",
+    title: "",
+    memo: "",
   });
   const [active, setActive] = useState(false);
   const dispatch = useDispatch();
@@ -58,22 +65,17 @@ const NewSchedule = ({ startS, start, end, y, setSchedule, today }) => {
       ctop = cend - 18;
     }
   }
+  let h = parseInt((ctop - 172) / 72);
+  let m = parseInt((ctop - h * 72 - 172) / 1.2);
+  let endh = parseInt((cend - 172) / 72);
+  let endm = parseInt((cend - endh * 72 - 172) / 1.2);
   let left = 130 * parseInt(y / 132);
+
   useEffect(() => {
-    setNewDay((day) => {
-      if (startS) setActive(true);
-      let h = parseInt((ctop - 172) / 72);
-      let m = parseInt((ctop - h * 72 - 172) / 1.2);
-      let endh = parseInt((cend - 172) / 72);
-      let endm = parseInt((cend - endh * 72 - 172) / 1.2);
-      day.during.start.h = h;
-      day.during.start.m = m;
-      day.during.end.h = endh;
-      day.during.end.m = endm;
-      day.thisday = parseInt(y / 130);
-      return day;
-    });
-    if (active === true && startS === false) {
+    if (startS === true) {
+      setActive(true);
+    }
+    if (startS === false && active === true) {
       setSchedule(NewDay);
       dispatch(
         select({
@@ -85,29 +87,62 @@ const NewSchedule = ({ startS, start, end, y, setSchedule, today }) => {
           day: {
             year: today.year,
             month: today.month,
-            date: today.date + NewDay.thisday,
+            date: today.date + parseInt(y / 130) - 4,
           },
-          during: NewDay.during,
+          during: {
+            start: {
+              h: h,
+              m: m,
+            },
+            end: {
+              h: endh,
+              m: endm,
+            },
+          },
           title: "새로운 이벤트",
           memo: "",
         })
       );
-    } else setSchedule(false);
-    console.log(NewDay);
-  }, [startS]);
-
+      console.log("herer");
+      setActive(false);
+      setSchedule({
+        select: true,
+        tag: {
+          title: "기본",
+          color: "#3499ff",
+        },
+        day: {
+          year: today.year,
+          month: today.month,
+          date: today.date + parseInt(y / 130) - 4,
+        },
+        during: {
+          start: {
+            h: h,
+            m: m,
+          },
+          end: {
+            h: endh,
+            m: endm,
+          },
+        },
+        title: "새로운 이벤트",
+        memo: "",
+      });
+    }
+  }, [active, startS]);
   return (
-    <div style={{ zIndex: 2, position: "absolute" }}>
+    <div style={{ zIndex: 2, position: "absolute", backgroundColor: "#000" }}>
       <Schedule
         left={left - 210}
         top={top - 100}
         height={height}
-        color={NewDay.tag.color}
-        onClick={() => setSchedule(NewDay)}
+        color={schedule.tag.color}
+        onClick={() => dispatch(select(schedule))}
       >
-        {NewDay.title}
+        {schedule.title}
         <div>
-          {NewDay.during.start.h}시 {NewDay.during.start.m}분
+          {h}시 {m}분
         </div>
       </Schedule>
     </div>

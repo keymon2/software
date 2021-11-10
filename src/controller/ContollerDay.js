@@ -1,18 +1,18 @@
-import {get} from '../store/Schedule'
+import { setToken, getToken } from "../util.js";
 
-
-export const getFive = (credentials) =>async dispatch => {
-  const response = await fetch("http://localhost:4502/api/", {
-    method: "POST",
+export async function getAll() {
+  const Token = getToken();
+  const response = await fetch("http://localhost:4502/api/Day/all", {
+    method: "GET",
     headers: {
+      Authorization: "Bearer " + Token,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(credentials),
-  }).then((data) => dispatch(get(data)));
+  }).then((res) => res.json());
 
-  if (response.success) {
-    console.log(response.data);
+  if (response) {
+    console.log("response ~~~~~~~~~~~~~~~~~");
+    console.log(response);
   }
-
   return response;
 }

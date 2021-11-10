@@ -1,42 +1,37 @@
-
-import React,{Component} from 'react'
-import { getProfileUser } from '../controller/ContollerUser.js'
-import {getToken} from '../util.js'
-
-import {
-  TheContent,
-  TheSidebar,
-  TheFooter,
-  TheHeader
-} from './index'
-
+import React, { Component } from "react";
+import { getProfileUser } from "../controller/ContollerUser.js";
+import { getToken } from "../util.js";
+import { getAll } from "../controller/ContollerDay";
+import { TheContent, TheSidebar, TheFooter, TheHeader } from "./index";
 
 class TheLayout extends Component {
-  constructor (props) {
-    super(props)
-    this.state ={}
+  constructor(props) {
+    super(props);
+    this.state = {};
   }
-  
- 
-  render(){
-    const Token = getToken()
-    if(!Token){
-      this.props.history.push('/login')
+
+  render() {
+    const Token = getToken();
+    if (!Token) {
+      this.props.history.push("/login");
+    } else {
+      const data = getAll();
+      sessionStorage.setItem("schedule", JSON.stringify(data));
     }
-    
-  return(
+
+    return (
       <div className="c-app c-default-layout">
-        <TheSidebar/>
+        <TheSidebar />
         <div className="c-wrapper">
-          <TheHeader/>
+          <TheHeader />
           <div className="c-body">
             <TheContent />
           </div>
-          <TheFooter/>
+          <TheFooter />
         </div>
       </div>
-  );
+    );
   }
 }
 
-export default TheLayout
+export default TheLayout;
