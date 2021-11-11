@@ -17,6 +17,7 @@ const Schedule = styled.div`
 const NewSchedule = ({ startS, start, end, y, today }) => {
   const NewDay = useSelector((state) => state.schedule);
   const [schedule, setSchedule] = useState({
+    _id: -1,
     select: false,
     tag: {
       title: "기본",
@@ -79,6 +80,7 @@ const NewSchedule = ({ startS, start, end, y, today }) => {
       setSchedule(NewDay);
       dispatch(
         select({
+          _id: -1,
           select: true,
           tag: {
             title: "기본",

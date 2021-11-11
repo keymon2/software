@@ -1,7 +1,7 @@
 import React, { useMemo, useState, useEffect } from "react";
 import Select from "react-select";
 import { useSelector, useDispatch } from "react-redux";
-import { select } from "../../../../store/selectSchedule";
+import { changeColor } from "../../../../store/selectSchedule";
 const NewSelect = ({ color, setColor }) => {
   const schedule = useSelector((state) => state.schedule);
   const dispatch = useDispatch();
@@ -59,15 +59,7 @@ const NewSelect = ({ color, setColor }) => {
         defaultValue={options[0]}
         styles={customStyles}
         onChange={(e) => {
-          dispatch(
-            select({
-              ...schedule,
-              tag: {
-                color: e.color,
-                title: schedule.tag.title,
-              },
-            })
-          );
+          dispatch(changeColor(e.color));
         }}
       />
     </div>

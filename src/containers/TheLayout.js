@@ -15,8 +15,7 @@ class TheLayout extends Component {
     if (!Token) {
       this.props.history.push("/login");
     } else {
-      const data = getAll();
-      sessionStorage.setItem("schedule", JSON.stringify(data));
+      getAll();
     }
 
     return (

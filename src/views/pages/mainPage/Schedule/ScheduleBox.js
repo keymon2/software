@@ -57,6 +57,7 @@ const ScheduleBox = ({ List, today, data }) => {
           onClick={() => {
             dispatch(
               select({
+                _id: day.self._id,
                 select: true,
                 day: day.day,
                 tag: {
@@ -77,26 +78,6 @@ const ScheduleBox = ({ List, today, data }) => {
                 memo: day.self.memo,
               })
             );
-            console.log({
-              select: true,
-              day: day.day,
-              tag: {
-                color: day.color,
-                title: day.self.tag.title,
-              },
-              during: {
-                start: {
-                  h: day.self.during.start.h,
-                  m: day.self.during.start.m,
-                },
-                end: {
-                  h: day.self.during.end.h,
-                  m: day.self.during.end.m,
-                },
-              },
-              title: day.self.title,
-              memo: day.self.memo,
-            });
           }}
         >
           {day.self.title}

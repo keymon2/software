@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { string } from "prop-types";
 
 interface schedule {
+  _id: number;
   select: boolean;
   tag: {
     color: string;
@@ -27,6 +28,7 @@ interface schedule {
 }
 
 const initialState: schedule = {
+  _id: -1,
   select: false,
   tag: {
     color: "",
@@ -56,6 +58,7 @@ const selectScheduleSlice = createSlice({
   initialState,
   reducers: {
     select: (state, action) => {
+      state._id = action.payload._id;
       state.select = action.payload.select;
       state.day = action.payload.day;
       state.during = action.payload.during;
@@ -63,8 +66,11 @@ const selectScheduleSlice = createSlice({
       state.memo = action.payload.memo;
       state.tag = action.payload.tag;
     },
+    changeColor: (state, action) => {
+      state.tag.color = action.payload;
+    },
   },
 });
 
-export const { select } = selectScheduleSlice.actions;
+export const { select, changeColor } = selectScheduleSlice.actions;
 export default selectScheduleSlice.reducer;
