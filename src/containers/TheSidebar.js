@@ -30,6 +30,7 @@ const TheSidebar = () => {
       size="sm"
       show={show}
       onShowChange={(val) => dispatch({ type: "set", sidebarShow: val })}
+      style={{ backgroundColor: "#6c7a89" }}
     >
       <CSidebarBrand className="d-md-down-none" to="/">
         <SidebarCalendar />

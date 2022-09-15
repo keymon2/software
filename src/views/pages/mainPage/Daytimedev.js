@@ -5,18 +5,32 @@ import { useSelector, useDispatch } from "react-redux";
 import ScheduleBox from "./Schedule/ScheduleBox";
 import { Data } from "./scheduleData";
 import NewSchedule from "./Schedule/NewSchedule";
-import { select } from "../../../store/selectSchedule";
+import { updating } from "../../../store/update";
 import { getAll } from "../../../controller/ContollerDay";
+import { getToken } from "../../../util.js";
 function Daytimedev(props) {
-  const dispatch = useDispatch();
   const [data, setData] = useState([]);
+  const schedule = useSelector((state) => state.schedule);
+  const update = useSelector((state) => state.update);
+  const dispatch = useDispatch();
   useEffect(() => {
     async function asd() {
       const data = await getAll();
       setData(data.data);
+      dispatch({ type: "settest", test: data.data });
     }
-    asd();
+    const Token = getToken();
+    if (Token) {
+      asd();
+    }
   }, []);
+  async function getAllSchedull() {
+    const data = await getAll();
+    setData(data.data);
+    dispatch({ type: "settest", test: data.data });
+    dispatch(updating(false));
+  }
+
   const Hours = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"];
   const PHours = [
     "12",
@@ -40,6 +54,11 @@ function Daytimedev(props) {
   const [addY, setAddY] = useState(0);
   const [addX, setAddX] = useState(0);
   const [endY, setEndY] = useState(0);
+  const Token = getToken();
+
+  if (Token && update.update === true) {
+    getAllSchedull();
+  }
   const daylist = useCallback(() => {
     let dayListFive = [];
     for (let i = -2; i < 3; i++) {
@@ -86,23 +105,33 @@ function Daytimedev(props) {
     }
     return dayListFive;
   }, [year, month, date]);
-
+  let today = new Date();
+  let hours = today.getHours();
+  let min = today.getMinutes();
+  const dayListFive = daylist();
   const followLine = useCallback((e) => {
     if (e.pageY - 91 <= 74) setY(74);
     else setY(e.pageY - 91);
     setX(e.pageX);
   }, []);
+
+  // onMouseDown 이벤트에 쓰아는 함수
   const clickStart = useCallback((e) => {
     if (e.pageY <= 172) return;
     if (e.pageX <= 270 || e.pageX >= 920) return;
+    // 스케줄표 밖에서 클릭한 행동은 무시
     setStart(true);
     setAddY(e.pageY);
     setEndY(e.pageY);
     setAddX(e.pageX);
+    // setState() 함수활용 마우스가 클릭된 처음 시작을 저장
   }, []);
+  // onMouseMove 이벤트에 쓰이는 함수
   const clicking = useCallback(
     (e) => {
       if (start === false) return;
+      // 즉 clicking함수는 onMouseDown 다음에 실행 되어야 합니다.
+      // (setStart()는 clickStart 함수에서 바꾸기 때문에 )
       if (e.pageY <= 172) {
         setEndY(172);
       }
@@ -111,20 +140,22 @@ function Daytimedev(props) {
       }
       setEndY(e.pageY);
     },
+    // 스케줄표 안에서 mouseUp이벤트가 실행되면 그때 위치를 저장
+
     [start]
   );
+
+  // onMouseUp 이벤트에 쓰이는 함수
   const clickEnd = useCallback((e) => {
     setStart(false);
   }, []);
-  let today = new Date();
-  let hours = today.getHours();
-  let min = today.getMinutes();
-  const dayListFive = daylist();
+
   return (
     <div style={{ zIndex: 1 }} onMouseMove={clicking} onMouseUp={clickEnd}>
       <RedLine top={hours * 72 + min * 1.2 + 72}>
         {hours}:{min}
       </RedLine>
+      {/* 새로운 스케줄로 저장된 위치값을 보내줍니다.  */}
       <NewSchedule
         start={addY}
         end={endY}
@@ -135,6 +166,8 @@ function Daytimedev(props) {
           month: month,
           date: date,
         }}
+        data={data}
+        setData={setData}
       />
       <ScheduleBox
         List={Data}
@@ -176,7 +209,7 @@ function Daytimedev(props) {
           </Line>
         ))}
       </Schedule>
-      <Stat List={Data} Y={Y} X={X} />
+      <Stat List={data} data={data} Y={Y} X={X} />
     </div>
   );
 }
@@ -186,7 +219,7 @@ const Schedule = styled.table`
   z-index: 1;
 `;
 const Cell = styled.th`
-  border: 1px solid black;
+  border: 1px solid #6c7a89;
   width: 130px;
   height: 72px;
 `;
@@ -201,8 +234,9 @@ const RedLine = styled.div`
   width: 690px;
   left: 1%;
   top: ${(props) => props.top}px;
-  color: red;
-  background-color: red;
+  color: #d2ac2c;
+  fontsize: 30;
+  background-color: #d2ac2c;
 `;
 const MonthLength = (month) => {
   const monthArray = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];

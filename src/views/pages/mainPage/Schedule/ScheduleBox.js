@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { select } from "../../../../store/selectSchedule";
 import { object } from "prop-types";
 import { getAll } from "../../../../controller/ContollerDay";
+import { getTextColorByBackgroundColor } from "../../../../util";
 const Schedule = styled.div`
   z-index: 2;
   position: absolute;
@@ -16,6 +17,7 @@ const Schedule = styled.div`
   top: ${(props) => props.top + 72 || 0}px;
   overflow: hidden;
   border: 0.3px solid black;
+  color: ${(props) => (props.textcolor < 127.5 ? "white" : "black")};
 `;
 const ScheduleBox = ({ List, today, data }) => {
   console.log("sadasd");
@@ -39,6 +41,7 @@ const ScheduleBox = ({ List, today, data }) => {
       temp.color = sch.tag.color;
       temp.self = sch;
       temp.day = sch.day;
+      temp.index = index;
       console.log(temp);
       tempList.push(temp);
     }
@@ -54,34 +57,18 @@ const ScheduleBox = ({ List, today, data }) => {
           left={day.left}
           top={day.top}
           color={day.color}
-          onClick={() => {
+          textcolor={getTextColorByBackgroundColor(day.color)}
+          onClick={() =>
             dispatch(
               select({
-                _id: day.self._id,
+                index: day.index,
                 select: true,
-                day: day.day,
-                tag: {
-                  color: day.color,
-                  title: day.self.tag.title,
-                },
-                during: {
-                  start: {
-                    h: day.self.during.start.h,
-                    m: day.self.during.start.m,
-                  },
-                  end: {
-                    h: day.self.during.end.h,
-                    m: day.self.during.end.m,
-                  },
-                },
-                title: day.self.title,
-                memo: day.self.memo,
               })
-            );
-          }}
+            )
+          }
         >
-          {day.self.title}
-          <div>
+          <div style={{ marginLeft: 5 }}>{day.self.title}</div>
+          <div style={{ marginLeft: 5 }}>
             {day.self.during.start.h}시{day.self.during.start.m}분
           </div>
         </Schedule>

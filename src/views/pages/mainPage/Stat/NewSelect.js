@@ -1,68 +1,77 @@
 import React, { useMemo, useState, useEffect } from "react";
 import Select from "react-select";
 import { useSelector, useDispatch } from "react-redux";
-import { changeColor } from "../../../../store/selectSchedule";
-const NewSelect = ({ color, setColor }) => {
+import { getTextColorByBackgroundColor } from "../../../../util";
+const NewSelect = ({ color, setColor, data }) => {
   const schedule = useSelector((state) => state.schedule);
-  const dispatch = useDispatch();
   const [options, setOptions] = useState([
-    { value: "NOW", label: "NOW", color: schedule.tag.color },
-    { value: "ocean", label: "ocean", color: "ocean" },
-    { value: "blue", label: "blue", color: "blue" },
-    { value: "yellow", label: "yellow", color: "yellow" },
-    { value: "red", label: "red", color: "red" },
-    { value: "orange", label: "orange", color: "orange" },
-    { value: "black", label: "black", color: "black" },
-    { value: "white", label: "white", color: "white" },
+    {
+      value: "NOW",
+      label: "NOW",
+      color: data[schedule.index].tag.color,
+    },
+    { value: "Brown", label: "Brown", color: "#A52A2A" },
+    { value: "Salmon", label: "Salmon", color: "#FA8072" },
+    { value: "GreenYellow", label: "GreenYellow", color: "#ADFF2F" },
+    { value: "DarkGreen", label: "DarkGreen", color: "#006400" },
+    { value: "Turquoise", label: "Turquoise", color: "#40E0D0" },
+    { value: "DarkSlateGray", label: "DarkSlateGray", color: "#2F4F4F" },
+    { value: "Azure", label: "Azure", color: "#F0FFFF" },
   ]);
   useEffect(() => {
-    setOptions((data) => {
-      data[0].color = schedule.tag.color;
-      return data;
+    setOptions((x) => {
+      x[0].color = data[schedule.index].tag.color;
+      return x;
     });
-  }, [schedule]);
+  }, [data, schedule]);
   console.log(options[0].color);
   const customStyles = useMemo(
     () => ({
       option: (provided, state) => ({
         ...provided,
-        border: "1px dotted black",
-        color: "white",
+        border: "1px solid black",
+        color:
+          getTextColorByBackgroundColor(state.data.color) < 127.5
+            ? "white"
+            : "black",
         background: state.data.color,
-        opacity: 1,
-        padding: 20,
-        width: 100,
+        opacity: 20,
+        padding: 0,
+        width: 200,
+        height: 40,
       }),
       control: (provided) => ({
         ...provided,
-        width: 100,
-        background: "#e5e5e5",
+        width: 200,
+        background: "#6c7a89",
       }),
       singleValue: (provided, state) => ({
         ...provided,
-        color: state.data.color,
+        background: state.data.color,
+        color:
+          getTextColorByBackgroundColor(state.data.color) < 127.5
+            ? "white"
+            : "black",
         transition: "opacity 300ms",
+        float: "left",
+        width: 200,
       }),
       menu: (provided) => ({
         ...provided,
-        width: 100,
-        height: 50,
+        width: 200,
+        height: 20,
       }),
     }),
     []
   );
 
   return (
-    <div>
-      <Select
-        options={options}
-        defaultValue={options[0]}
-        styles={customStyles}
-        onChange={(e) => {
-          dispatch(changeColor(e.color));
-        }}
-      />
-    </div>
+    <Select
+      options={options}
+      defaultValue={options[0]}
+      styles={customStyles}
+      onChange={(e) => setColor(e.color)}
+    />
   );
 };
 

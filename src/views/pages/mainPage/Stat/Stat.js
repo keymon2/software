@@ -21,7 +21,7 @@ const Line = styled.div`
   color: red;
   background-color: #ebedef;
 `;
-const Stat = ({ List, X, Y, setTag, schedule, ThisDay }) => {
+const Stat = ({ List, X, Y, setTag, schedule, ThisDay, data }) => {
   const [pageY, setPageY] = useState(0);
   useEffect(() => {
     window.addEventListener("scroll", (e) => {
@@ -30,9 +30,7 @@ const Stat = ({ List, X, Y, setTag, schedule, ThisDay }) => {
   }, []);
   let temp = [];
   List.map((day, index) => {
-    day.schedule.map((data, index) => {
-      temp.push(data.tag);
-    });
+    temp.push(day.tag);
   });
   const tagList = [...new Set(temp.map(JSON.stringify))].map(JSON.parse);
   console.log(ThisDay);
@@ -42,7 +40,7 @@ const Stat = ({ List, X, Y, setTag, schedule, ThisDay }) => {
         <Tag data={data} key={index} setTag={setTag}></Tag>
       ))}
       <Line></Line>
-      <Day schedule={schedule} ThisDay={ThisDay}></Day>
+      <Day schedule={schedule} ThisDay={ThisDay} data={data}></Day>
     </StatBox>
   );
 };

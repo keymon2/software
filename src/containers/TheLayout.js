@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { getProfileUser } from "../controller/ContollerUser.js";
 import { getToken } from "../util.js";
-import { getAll } from "../controller/ContollerDay";
 import { TheContent, TheSidebar, TheFooter, TheHeader } from "./index";
-
+import GlobalStyle from "../GlobalStyle.jsx";
 class TheLayout extends Component {
   constructor(props) {
     super(props);
@@ -14,10 +13,7 @@ class TheLayout extends Component {
     const Token = getToken();
     if (!Token) {
       this.props.history.push("/login");
-    } else {
-      getAll();
     }
-
     return (
       <div className="c-app c-default-layout">
         <TheSidebar />

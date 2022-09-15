@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { select } from "../../../../store/selectSchedule";
+import { update } from "../../../../controller/ContollerDay";
+import { updating } from "../../../../store/update";
+import { idText } from "typescript";
 const Schedule = styled.div`
   z-index: 2;
   position: absolute;
@@ -14,34 +17,36 @@ const Schedule = styled.div`
   overflow: hidden;
   border: 1px solid;
 `;
-const NewSchedule = ({ startS, start, end, y, today }) => {
-  const NewDay = useSelector((state) => state.schedule);
-  const [schedule, setSchedule] = useState({
-    _id: -1,
-    select: false,
-    tag: {
-      title: "기본",
-      color: "#3499ff",
-    },
-    day: {
-      year: 0,
-      month: 0,
-      date: 0,
-    },
-    during: {
-      start: {
-        h: 0,
-        m: 0,
-      },
-      end: {
-        h: 0,
-        m: 0,
-      },
-    },
-    title: "",
-    memo: "",
-  });
+const NewSchedule = ({ startS, start, end, y, today, data, setData }) => {
+  // const [schedule, setSchedule] = useState({
+  //   _id: -1,
+  //   index: -1,
+  //   select: false,
+  //   tag: {
+  //     title: "기본",
+  //     color: "#3499ff",
+  //   },
+  //   day: {
+  //     year: 0,
+  //     month: 0,
+  //     date: 0,
+  //   },
+  //   during: {
+  //     start: {
+  //       h: 0,
+  //       m: 0,
+  //     },
+  //     end: {
+  //       h: 0,
+  //       m: 0,
+  //     },
+  //   },
+  //   title: "",
+  //   memo: "",
+  // });
+  const [index, setIndex] = useState(-123);
   const [active, setActive] = useState(false);
+  const upda = useSelector((state) => state.update).update;
   const dispatch = useDispatch();
   let height = 18;
   let top = 0;
@@ -73,23 +78,17 @@ const NewSchedule = ({ startS, start, end, y, today }) => {
   let left = 130 * parseInt(y / 132);
 
   useEffect(() => {
-    if (startS === true) {
-      setActive(true);
-    }
-    if (startS === false && active === true) {
-      setSchedule(NewDay);
-      dispatch(
-        select({
-          _id: -1,
-          select: true,
-          tag: {
-            title: "기본",
-            color: "#3499ff",
-          },
+    const func = async () => {
+      await update({
+        sch: {
           day: {
             year: today.year,
             month: today.month,
             date: today.date + parseInt(y / 130) - 4,
+          },
+          tag: {
+            title: "기본",
+            color: "#3499ff",
           },
           during: {
             start: {
@@ -103,46 +102,29 @@ const NewSchedule = ({ startS, start, end, y, today }) => {
           },
           title: "새로운 이벤트",
           memo: "",
-        })
-      );
-      console.log("herer");
-      setActive(false);
-      setSchedule({
-        select: true,
-        tag: {
-          title: "기본",
-          color: "#3499ff",
         },
-        day: {
-          year: today.year,
-          month: today.month,
-          date: today.date + parseInt(y / 130) - 4,
-        },
-        during: {
-          start: {
-            h: h,
-            m: m,
-          },
-          end: {
-            h: endh,
-            m: endm,
-          },
-        },
-        title: "새로운 이벤트",
-        memo: "",
       });
+      dispatch(updating(true));
+    };
+    if (startS === true) {
+      setActive(true);
+    }
+    if (startS === false && active === true) {
+      func();
     }
   }, [active, startS]);
+  if (upda === true) {
+    height = 0;
+  }
   return (
     <div style={{ zIndex: 2, position: "absolute", backgroundColor: "#000" }}>
       <Schedule
         left={left - 210}
         top={top - 100}
         height={height}
-        color={schedule.tag.color}
-        onClick={() => dispatch(select(schedule))}
+        color={"#3499ff"}
       >
-        {schedule.title}
+        {"새로운 이벤트"}
         <div>
           {h}시 {m}분
         </div>

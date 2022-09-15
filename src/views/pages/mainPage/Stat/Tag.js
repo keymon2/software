@@ -3,12 +3,11 @@ import styled from "styled-components";
 const Line = styled.div`
   display: flex;
   flex-direction: row;
-  background-color: ${(props) => (!props.ho ? "#e5e5e5" : "#9da5b1")};
 `;
 const CheckBox = styled.img`
   background-color: ${(props) => props.color || "#e5e5e5"};
 
-  border-radius: 20%;
+  border-radius: 100%;
 `;
 const Text = styled.div`
   flex: 9;
