@@ -36,6 +36,7 @@ class Register extends Component{
 
   handleSubmit= async e =>{
     e.preventDefault();
+    // 하나라도 적지 않았다면 다시 적으라고 메세지 보내기
       if( this.state.username == "" || 
           this.state.useremail == "" ||
           this.state.userpassword == "" ||
@@ -45,16 +46,19 @@ class Register extends Component{
        
         return;
       }
+      // Password 다시 쓴 password 와 같은지 확인 
       if(this.state.userpassword === this.state.repet){
         const response = await createUser({
           "name": this.state.username,
           "email": this.state.useremail,
           "password": this.state.userpassword
         });
+      // server에 회원가입 성공시 login 화면으로 보내기 
         if(response.success){
           this.props.history.push('/login')
         }
         else{
+        // server에 이메일이 db에 저장된 경우 메세지 보내기 
           alert("email 이있는 email 입니다.")
           this.setState({
             username: "",
@@ -65,6 +69,7 @@ class Register extends Component{
           })
         }
     }else{
+      // password 틀렸을경우 
       alert("비밀번호 다시 입력 하시오!")
       this.setState({
         message: "wrong-plz-repeat same password",

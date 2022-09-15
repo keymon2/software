@@ -36,16 +36,6 @@ const StyledUpDown = styled.button`
 `;
 
 export class SidebarCalendar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      year: new Date().getFullYear(),
-      month: new Date().getMonth() + 1,
-      date: new Date().getDate(),
-      monthArray: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
-      weekArr: ["일", "월", "화", "수", "목", "금", "토"],
-    };
-  }
   componentDidMount() {
     const { year, month, date } = this.props;
     console.log("sidebar");
@@ -56,6 +46,17 @@ export class SidebarCalendar extends Component {
       date: date,
     });
   }
+  constructor(props) {
+    super(props);
+    this.state = {
+      year: new Date().getFullYear(),
+      month: new Date().getMonth() + 1,
+      date: new Date().getDate(),
+      monthArray: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
+      weekArr: ["일", "월", "화", "수", "목", "금", "토"],
+    };
+  }
+
   MonthLength = (month) => {
     let monthTemp = 0;
     if (month - 1 < 0) {
@@ -115,7 +116,6 @@ export class SidebarCalendar extends Component {
   render() {
     let DayList = this.dayList();
 
-    const { year, month, date } = this.props;
     const { changeDay } = this.props;
     return (
       <StyledCalendar>
